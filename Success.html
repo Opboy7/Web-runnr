@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed - Car Travels</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .theme-toggle { cursor: pointer; }
+    body { padding-top: 70px; }
+  </style>
+</head>
+<body class="bg-light">
+
+  <!-- Navbar (same as index for consistency) -->
+  <nav class="navbar navbar-expand-lg fixed-top border-bottom" data-bs-theme="light">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/">🚖 Car Travels</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="/">🏠 Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#booking">🚗 Book Ride</a></li>
+          <li class="nav-item"><a class="nav-link" href="/login">🔑 Admin Login</a></li>
+          <li class="nav-item">
+            <button id="themeBtn" class="btn btn-outline-secondary btn-sm ms-2 theme-toggle">🌙 Dark Mode</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Success Message -->
+  <div class="container text-center py-5">
+    <div class="card shadow-lg p-4 rounded-4">
+      <h1 class="text-success display-5">🎉 Booking Confirmed!</h1>
+      <p class="lead mt-3">Thank you for choosing <strong>Car Travels</strong>.</p>
+      <p class="text-muted">Our team will contact you shortly to confirm the details of your ride.</p>
+      <a href="/" class="btn btn-primary mt-4">🏠 Back to Home</a>
+    </div>
+  </div>
+
+  <!-- Dark Mode Script -->
+  <script>
+    const themeBtn = document.getElementById("themeBtn");
+    const htmlTag = document.documentElement;
+    const navbar = document.querySelector("nav");
+
+    function setTheme(theme) {
+      htmlTag.setAttribute("data-bs-theme", theme);
+      localStorage.setItem("theme", theme);
+      themeBtn.innerText = theme === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+      navbar.setAttribute("data-bs-theme", theme);
+    }
+
+    if (localStorage.getItem("theme")) {
+      setTheme(localStorage.getItem("theme"));
+    }
+
+    themeBtn.addEventListener("click", () => {
+      let current = htmlTag.getAttribute("data-bs-theme");
+      setTheme(current === "light" ? "dark" : "light");
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
